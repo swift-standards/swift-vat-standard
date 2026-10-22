@@ -1,5 +1,4 @@
 import Testing
-
 import VAT_Standard
 
 extension VAT.Identification {
@@ -78,17 +77,17 @@ extension VAT.Identification.Test.`Edge Case` {
 
     @Test
     func `spaces and other separators are refused`() {
-        #expect(throws: VAT.Identification.Error.invalidCharacter(" ")) {
+        #expect(throws: VAT.Identification.Error.invalidCharacter) {
             try VAT.Identification("NL 000099998B57")
         }
-        #expect(throws: VAT.Identification.Error.invalidCharacter("-")) {
+        #expect(throws: VAT.Identification.Error.invalidCharacter) {
             try VAT.Identification("NL000099998-B57")
         }
     }
 
     @Test
     func `non-ASCII characters are refused`() {
-        #expect(throws: VAT.Identification.Error.invalidCharacter("\u{301}")) {
+        #expect(throws: VAT.Identification.Error.invalidCharacter) {
             try VAT.Identification("NL0\u{301}00099998B57")
         }
     }
