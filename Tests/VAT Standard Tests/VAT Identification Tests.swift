@@ -1,14 +1,16 @@
 import Testing
 import VAT_Standard
 
-extension VAT.Identification {
+enum `VAT.Identification Tests` {}
+
+extension `VAT.Identification Tests` {
     @Suite struct Test {
         @Suite struct Unit {}
         @Suite struct `Edge Case` {}
     }
 }
 
-extension VAT.Identification.Test.Unit {
+extension `VAT.Identification Tests`.Test.Unit {
 
     @Test(arguments: [
         ("NL000099998B57", VAT.Identification.Prefix.nl, "000099998B57"),
@@ -53,7 +55,7 @@ extension VAT.Identification.Test.Unit {
     }
 }
 
-extension VAT.Identification.Test.`Edge Case` {
+extension `VAT.Identification Tests`.Test.`Edge Case` {
 
     @Test
     func `a lower-case prefix is refused`() {
