@@ -58,6 +58,16 @@ extension `VAT.Identification Tests`.Test.Unit {
 extension `VAT.Identification Tests`.Test.`Edge Case` {
 
     @Test
+    func `a lower-case number is upper-cased, so both cases are the same identification`() throws {
+        let lower = try VAT.Identification("NL000099998b57")
+        let upper = try VAT.Identification("NL000099998B57")
+        #expect(lower.number == "000099998B57")
+        #expect(lower.description == "NL000099998B57")
+        #expect(lower == upper)
+        #expect(lower.hashValue == upper.hashValue)
+    }
+
+    @Test
     func `a lower-case prefix is refused`() {
         #expect(throws: VAT.Identification.Error.invalidPrefix("nl")) {
             try VAT.Identification("nl000099998B57")

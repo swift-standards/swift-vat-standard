@@ -1,4 +1,6 @@
 extension VAT.Identification {
+    /// Parses a VAT identification number, upper-casing the national number so that
+    /// `NL000099998b57` and `NL000099998B57` are the same identification.
     public init(_ text: some StringProtocol) throws(VAT.Identification.Error) {
         let prefix = String(text.prefix(2))
         guard prefix.utf8.count == 2, let member = VAT.Identification.Prefix(rawValue: prefix) else {
@@ -21,6 +23,6 @@ extension VAT.Identification {
             throw .invalidLength(number.count)
         }
         self.prefix = member
-        self.number = String(text.dropFirst(2))
+        self.number = String(text.dropFirst(2)).uppercased()
     }
 }
